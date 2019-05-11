@@ -1,0 +1,4 @@
+// this tsconfig.json is necessary so VSCode doesn't choke, it wants a file in the root named this
+{
+	"extends": "./tsconfig-tests.json"
+}
