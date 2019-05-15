@@ -1,12 +1,12 @@
 import { expect, use as chaiUse} from 'chai'
 import chaiBytes from 'chai-bytes'
 chaiUse(chaiBytes)
-import { uint8ArrayToSignedBigint, signedBigintToUint8Array, uint8ArrayToUnsignedBigint, unsignedBigintToUint8Array, signedBigintToHexString, unsignedBigintToHexString, hexStringToUnsignedBigint, hexStringToSignedBigint } from './index'
+import { uint8ArrayToSignedBigint, signedBigintToUint8Array, uint8ArrayToUnsignedBigint, unsignedBigintToUint8Array, signedBigintToHexString, hexStringToUnsignedBigint, hexStringToSignedBigint } from './index'
 
 const testCases: Array<{signed: bigint, unsigned: bigint, byteArray: Uint8Array, hex: string}> = [
-	{ signed: 0n, unsigned: 0n, byteArray: new Uint8Array([0x00]), hex: '00' },
-	{ signed: 1n, unsigned: 1n, byteArray: new Uint8Array([0x01]), hex: '01' },
-	{ signed: 2n, unsigned: 2n, byteArray: new Uint8Array([0x02]), hex: '02' },
+	{ signed: 0n, unsigned: 0n, byteArray: new Uint8Array([0x00]), hex: '0' },
+	{ signed: 1n, unsigned: 1n, byteArray: new Uint8Array([0x01]), hex: '1' },
+	{ signed: 2n, unsigned: 2n, byteArray: new Uint8Array([0x02]), hex: '2' },
 	{ signed: 126n, unsigned: 126n, byteArray: new Uint8Array([0x7e]), hex: '7e' },
 	{ signed: 127n, unsigned: 127n, byteArray: new Uint8Array([0x7f]), hex: '7f' },
 	{ signed: -128n, unsigned: 128n, byteArray: new Uint8Array([0x80]), hex: '80' },
@@ -14,9 +14,10 @@ const testCases: Array<{signed: bigint, unsigned: bigint, byteArray: Uint8Array,
 	{ signed: -126n, unsigned: 130n, byteArray: new Uint8Array([0x82]), hex: '82' },
 	{ signed: -2n, unsigned: 254n, byteArray: new Uint8Array([0xfe]), hex: 'fe' },
 	{ signed: -1n, unsigned: 255n, byteArray: new Uint8Array([0xff]), hex: 'ff' },
-	{ signed: 0n, unsigned: 0n, byteArray: new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]), hex: '0000000000000000000000000000000000000000000000000000000000000000' },
-	{ signed: 1n, unsigned: 1n, byteArray: new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01]), hex: '0000000000000000000000000000000000000000000000000000000000000001' },
-	{ signed: 2n, unsigned: 2n, byteArray: new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02]), hex: '0000000000000000000000000000000000000000000000000000000000000002' },
+	{ signed: 0n, unsigned: 0n, byteArray: new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]), hex: '0' },
+	{ signed: 1n, unsigned: 1n, byteArray: new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01]), hex: '1' },
+	{ signed: 2n, unsigned: 2n, byteArray: new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02]), hex: '2' },
+	{ signed: 1n, unsigned: 1n, byteArray: new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01]), hex: '1' },
 	{ signed: 57896044618658097711785492504343953926634992332820282019728792003956564819966n, unsigned: 57896044618658097711785492504343953926634992332820282019728792003956564819966n, byteArray: new Uint8Array([0x7f, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xfe]), hex: '7ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe' },
 	{ signed: 57896044618658097711785492504343953926634992332820282019728792003956564819967n, unsigned: 57896044618658097711785492504343953926634992332820282019728792003956564819967n, byteArray: new Uint8Array([0x7f, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff]), hex: '7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff' },
 	{ signed: -57896044618658097711785492504343953926634992332820282019728792003956564819968n, unsigned: 57896044618658097711785492504343953926634992332820282019728792003956564819968n, byteArray: new Uint8Array([0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]), hex: '8000000000000000000000000000000000000000000000000000000000000000' },
@@ -27,19 +28,13 @@ const testCases: Array<{signed: bigint, unsigned: bigint, byteArray: Uint8Array,
 ]
 
 for (let testCase of testCases) {
-	const expected = testCase.signed
-	const actual = uint8ArrayToSignedBigint(testCase.byteArray)
+	const expected = testCase.unsigned
+	const actual = uint8ArrayToUnsignedBigint(testCase.byteArray)
 	expect(expected).to.equal(actual)
 }
 for (let testCase of testCases) {
-	const expected = testCase.byteArray
-	const bits = testCase.byteArray.length * 8
-	const actual = signedBigintToUint8Array(testCase.signed, bits)
-	expect(expected).to.equalBytes(actual)
-}
-for (let testCase of testCases) {
-	const expected = testCase.unsigned
-	const actual = uint8ArrayToUnsignedBigint(testCase.byteArray)
+	const expected = testCase.signed
+	const actual = uint8ArrayToSignedBigint(testCase.byteArray)
 	expect(expected).to.equal(actual)
 }
 for (let testCase of testCases) {
@@ -48,12 +43,11 @@ for (let testCase of testCases) {
 	const actual = unsignedBigintToUint8Array(testCase.unsigned, bits)
 	expect(expected).to.equalBytes(actual)
 }
-
 for (let testCase of testCases) {
-	const expected = testCase.hex
+	const expected = testCase.byteArray
 	const bits = testCase.byteArray.length * 8
-	const actual = unsignedBigintToHexString(testCase.unsigned, bits)
-	expect(expected).to.equal(actual)
+	const actual = signedBigintToUint8Array(testCase.signed, bits)
+	expect(expected).to.equalBytes(actual)
 }
 
 for (let testCase of testCases) {
@@ -62,15 +56,13 @@ for (let testCase of testCases) {
 	const actual = signedBigintToHexString(testCase.signed, bits)
 	expect(expected).to.equal(actual)
 }
-
 for (let testCase of testCases) {
 	const expected = testCase.unsigned
 	const actual = hexStringToUnsignedBigint(testCase.hex)
 	expect(expected).to.equal(actual)
 }
-
 for (let testCase of testCases) {
 	const expected = testCase.signed
-	const actual = hexStringToSignedBigint(testCase.hex)
+	const actual = hexStringToSignedBigint(testCase.hex, testCase.byteArray.length * 8)
 	expect(expected).to.equal(actual)
 }
