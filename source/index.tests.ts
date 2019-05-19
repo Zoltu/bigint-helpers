@@ -1,4 +1,4 @@
-import { expect, use as chaiUse} from 'chai'
+import { expect, use as chaiUse, assert} from 'chai'
 import chaiBytes from 'chai-bytes'
 chaiUse(chaiBytes)
 import { uint8ArrayToSignedBigint, signedBigintToUint8Array, uint8ArrayToUnsignedBigint, unsignedBigintToUint8Array, signedBigintToHexString, hexStringToUnsignedBigint, hexStringToSignedBigint } from './index'
@@ -66,3 +66,7 @@ for (let testCase of testCases) {
 	const actual = hexStringToSignedBigint(testCase.hex, testCase.byteArray.length * 8)
 	expect(expected).to.equal(actual)
 }
+
+assert.throws(() => unsignedBigintToUint8Array(256n, 8))
+assert.throws(() => signedBigintToUint8Array(128n, 8))
+assert.throws(() => signedBigintToUint8Array(-129n, 8))

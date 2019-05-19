@@ -24,7 +24,7 @@ export function hexStringToSignedBigint(hexString: string, numberOfBits: number)
 
 export function unsignedBigintToUint8Array(value: bigint, numberOfBits: number): Uint8Array {
 	if (numberOfBits % 8) throw new Error(`Only 8-bit increments are supported when serializing a bigint.`)
-	if (value > 2n**BigInt(numberOfBits) || value < 0) throw new Error(`Cannot fit ${value} into a ${numberOfBits}-bit unsigned integer.`)
+	if (value >= 2n**BigInt(numberOfBits) || value < 0) throw new Error(`Cannot fit ${value} into a ${numberOfBits}-bit unsigned integer.`)
 	const result = new Uint8Array(numberOfBits / 8)
 	for (let i = 0; i < result.length; ++i) {
 		result[i] = Number((value >> BigInt(numberOfBits - i * 8 - 8)) & 0xffn)

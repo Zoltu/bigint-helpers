@@ -1,7 +1,7 @@
 {
 	"name": "@zoltu/bigint-helpers",
 	"description": "Helper functions for the new bigint built-in primitive.",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"repository": {},
 	"license": "Unlicense",
 	"main": "output-node/index.js",
